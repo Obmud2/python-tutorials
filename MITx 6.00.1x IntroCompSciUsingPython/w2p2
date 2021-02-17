@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Oct 27 07:58:56 2019
+
+@author: Jon
+"""
+def annualEndBal(balance, annualInt, fixedPay):
+    def monthEndBal():
+        """
+        Calculates the monthly remaining balance given a monthly minimum payment
+        input 
+            Initial Balance
+            Annual Interest Rate
+            Fixed Payment
+        """
+        monthInt = annualInt / 12
+        monthUnpaidBal = balance - fixedPay
+        return monthUnpaidBal * (1 + monthInt)
+
+    for i in range(12):
+        balance = monthEndBal()
+        
+    return balance
+
+balance = 999999
+interest = 0.18
+low = balance / 12
+high = balance * (1 + interest)**12 / 12
+
+while True:
+    payment = (low + high)/2
+    result = annualEndBal(balance, interest, payment)
+    if result < 0 and result > -0.01:
+        break
+    elif result > 0:
+        low = payment
+    elif result < 0:
+        high = payment
+
+
+print('Lowest Payment: ' + str(payment))

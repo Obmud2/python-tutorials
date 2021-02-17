@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+
+def endBal(initBal, annualInt, minPayRate):
+    """
+    Calculates the monthly remaining balance given a monthly minimum payment
+    input 
+        Initial Balance
+        Annual Interest Rate
+        Miniumum Payment Rate
+    """
+    monthInt = annualInt / 12
+    minPay = initBal * minPayRate
+    monthUnpaidBal = initBal - minPay
+    return monthUnpaidBal * (1 + monthInt)
+
+for i in range(12):
+    balance = endBal(balance, annualInterestRate, monthlyPaymentRate)
+    
+print('Remaining Balance: ' + str(round(balance,2)))
